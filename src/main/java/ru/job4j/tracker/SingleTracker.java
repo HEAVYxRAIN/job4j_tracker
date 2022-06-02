@@ -2,15 +2,15 @@ package ru.job4j.tracker;
 
 public class SingleTracker {
 
-        private static ru.job4j.tracker.SingleTracker instance = null;
+        private static SingleTracker instance = null;
         private Tracker tracker = new Tracker();
 
         private SingleTracker() {
         }
 
-        public static ru.job4j.tracker.SingleTracker getInstance() {
+        public static SingleTracker getInstance() {
             if (instance == null) {
-                instance = new ru.job4j.tracker.SingleTracker();
+                instance = new SingleTracker();
             }
             return instance;
         }
