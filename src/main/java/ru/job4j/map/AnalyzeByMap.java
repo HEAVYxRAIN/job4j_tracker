@@ -1,8 +1,6 @@
 package ru.job4j.map;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class AnalyzeByMap {
     public static double averageScore(List<Pupil> pupils) {
@@ -32,16 +30,15 @@ public class AnalyzeByMap {
     }
 
     public static List<Label> averageScoreBySubject(List<Pupil> pupils) {
-        List<Subject> subjectList = pupils.get(0).subjects();
-        List<Label> averageScore = new ArrayList<>();
-        for (int i = 0; i < subjectList.size(); i++) {
-            double sum = 0;
-            int count = 0;
-            for (Pupil pupil : pupils) {
-                sum += pupil.subjects().get(i).score();
-                count++;
+        Map<String, Integer> subjectMap = new HashMap<>();
+        for (Pupil pupil : pupils) {
+            for (Subject subject : pupil.subjects()) {
+                subjectMap.merge(subject.name(), subject.score(), Integer::sum);
             }
-            averageScore.add(new Label(subjectList.get(i).name(), sum / count));
+        }
+        List<Label> averageScore = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : subjectMap.entrySet()) {
+            averageScore.add(new Label(entry.getKey(), (double) entry.getValue() / pupils.size()));
         }
         return averageScore;
     }

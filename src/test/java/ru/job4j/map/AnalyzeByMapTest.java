@@ -83,15 +83,15 @@ class AnalyzeByMapTest {
                         ),
                         new Pupil("Petrov",
                                 List.of(
-                                        new Subject("Math", 60),
+                                        new Subject("Philosophy", 60),
                                         new Subject("Lang", 60),
-                                        new Subject("Philosophy", 60)
+                                        new Subject("Math", 60)
                                 )
                         ),
                         new Pupil("Sidorov",
                                 List.of(
-                                        new Subject("Math", 80),
                                         new Subject("Lang", 60),
+                                        new Subject("Math", 80),
                                         new Subject("Philosophy", 50)
                                 )
                         )
