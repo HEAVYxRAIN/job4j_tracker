@@ -57,14 +57,15 @@ public class AnalyzeByMap {
     }
 
     public static Label bestSubject(List<Pupil> pupils) {
-        List<Subject> subjectList = pupils.get(0).subjects();
-        List<Label> bestSubject = new ArrayList<>();
-        for (int i = 0; i < subjectList.size(); i++) {
-            double sum = 0;
-            for (Pupil pupil : pupils) {
-                sum += pupil.subjects().get(i).score();
+        Map<String, Integer> subjectMap = new HashMap<>();
+        for (Pupil pupil : pupils) {
+            for (Subject subject : pupil.subjects()) {
+                subjectMap.merge(subject.name(), subject.score(), Integer::sum);
             }
-            bestSubject.add(new Label(subjectList.get(i).name(), sum));
+        }
+        List<Label> bestSubject = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : subjectMap.entrySet()) {
+            bestSubject.add(new Label(entry.getKey(), (double) entry.getValue()));
         }
         bestSubject.sort(Comparator.reverseOrder());
         return bestSubject.get(0);
