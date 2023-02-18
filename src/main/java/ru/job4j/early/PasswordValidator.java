@@ -27,8 +27,9 @@ public class PasswordValidator {
                 throw new IllegalArgumentException(
                         "Password should contain at least one special symbol");
             }
-            if (!password.contains("qwerty") || !password.contains("12345") || !password.contains(
-                    "password") || !password.contains("admin") || !password.contains("user")) {
+            if (!password.contains("qwerty") || !password.contains("12345")
+                    || !password.contains("password") || !password.contains("admin")
+                    || !password.contains("user")) {
                 throw new IllegalArgumentException(
                         "Password shouldn't contain substrings"
                                 + ": qwerty, 12345, password, admin, user");
