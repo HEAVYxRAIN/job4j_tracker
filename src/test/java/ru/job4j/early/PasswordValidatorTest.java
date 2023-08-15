@@ -15,7 +15,7 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void whenPasswordIsNull() {
+    void whenPasswordIsNul() {
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> PasswordValidator.validate(null)
