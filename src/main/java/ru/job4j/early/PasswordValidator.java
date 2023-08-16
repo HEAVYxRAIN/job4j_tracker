@@ -18,32 +18,40 @@ public class PasswordValidator {
                         + " 12345, password, admin, user");
             }
         }
-        boolean hasUpCase;
-        boolean hasLowCase;
-        boolean hasDigit;
-        boolean hasSpecial;
+        boolean hasUpCase = false;
+        boolean hasLowCase = false;
+        boolean hasDigit = false;
+        boolean hasSpecial = false;
         for (char symbol : password.toCharArray()) {
-            hasUpCase = Character.isUpperCase(symbol);
+            if (Character.isUpperCase(symbol)) {
+                hasUpCase = true;
+            }
+            if (Character.isLowerCase(symbol)) {
+                hasLowCase = true;
+            }
+            if (Character.isDigit(symbol)) {
+                hasDigit = true;
+            }
+            if (!Character.isLetterOrDigit(symbol)) {
+                hasSpecial = true;
+            }
+        }
             if (!hasUpCase) {
                 throw new IllegalArgumentException(
                         "Password should contain at least one uppercase letter");
             }
-            hasLowCase = Character.isLowerCase(symbol);
             if (!hasLowCase) {
                 throw new IllegalArgumentException(
                         "Password should contain at least one lowercase letter");
             }
-            hasDigit = Character.isDigit(symbol);
             if (!hasDigit) {
                 throw new IllegalArgumentException(
                         "Password should contain at least one figure");
             }
-            hasSpecial = Character.isLetterOrDigit(symbol);
             if (!hasSpecial) {
                 throw new IllegalArgumentException(
                         "Password should contain at least one special symbol");
             }
-        }
         return password;
     }
 }
