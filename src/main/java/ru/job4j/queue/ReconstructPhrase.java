@@ -13,28 +13,21 @@ public class ReconstructPhrase {
     }
 
     private String getEvenElements() {
-        StringBuilder builder = new StringBuilder();
-        String result = null;
-        int size = evenElements.size();
-            for (char i = 0; size != 0; i++) {
-                if (i % 2 == 0) {
-                    result = String.valueOf(builder.append(evenElements.peek()));
-                }
-                evenElements.poll();
-                size--;
+        StringBuilder result = new StringBuilder();
+        int size = evenElements.size() / 2;
+            for (char i = 0; i < size; i++) {
+                result.append(evenElements.pollFirst());
+                evenElements.pollFirst();
             }
-        return result;
+        return result.toString();
     }
 
     private String getDescendingElements() {
-        StringBuilder builder = new StringBuilder();
-        String result = null;
-        int size = descendingElements.size();
-        while (size != 0) {
-                result = String.valueOf(builder.append(descendingElements.pollLast()));
-                size--;
+        StringBuilder result = new StringBuilder();
+        while (descendingElements.size() > 0) {
+            result.append(descendingElements.pollLast());
         }
-        return result;
+        return result.toString();
     }
 
     public String getReconstructPhrase() {
