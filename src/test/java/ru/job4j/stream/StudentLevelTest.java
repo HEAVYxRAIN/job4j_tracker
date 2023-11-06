@@ -52,7 +52,8 @@ class StudentLevelTest {
         List<Student> expected = List.of(
                 new Student(101, "Petya"),
                 new Student(84, "Boris"),
-                new Student(78, "Yana")
+                new Student(78, "Yana"),
+                new Student(65, "Nikolai")
         );
         assertThat(StudentLevel.levelOf(input, 65)).containsSequence(expected);
     }
